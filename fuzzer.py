@@ -5,9 +5,10 @@ import socket, time, sys, struct
 ip = ""
 port = 
 timeout = 5
+step = 100
 
 prefix = b""
-fuzz = b"A" * 100
+fuzz = b"A" * step
 payload = prefix + fuzz
 
 while True:
@@ -22,5 +23,5 @@ while True:
   except:
     print("Fuzzing crashed at {} bytes".format(len(payload) - len(prefix)))
     sys.exit(0)
-  payload += b"A" * 100
+  payload += b"A" * step
   time.sleep(1)
